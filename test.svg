@@ -1,0 +1,75 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+
+    <!-- Styles -->
+    <style>
+        .process { fill: #b2df8a; stroke: #33a02c; stroke-width: 2; }
+        .decision { fill: #fdbf6f; stroke: #ff7f00; stroke-width: 2; }
+        .io { fill: #cab2d6; stroke: #6a3d9a; stroke-width: 2; }
+        .arrow { stroke: black; stroke-width: 2; marker-end: url(#arrowhead); }
+        text { font-family: Arial; font-size: 14; fill: black; text-anchor: middle; }
+    </style>
+
+    <!-- Start -->
+    <rect x="50" y="50" width="100" height="50" class="process"/>
+    <text x="100" y="85">Start</text>
+
+    <!-- Open Video File -->
+    <rect x="200" y="50" width="150" height="50" class="io"/>
+    <text x="275" y="85">Open Video File</text>
+
+    <!-- Initialize Variables -->
+    <rect x="400" y="50" width="150" height="50" class="process"/>
+    <text x="475" y="85">Initialize Variables</text>
+
+    <!-- Main Loop -->
+    <rect x="275" y="150" width="150" height="50" class="decision"/>
+    <text x="325" y="185">Main Loop</text>
+
+    <!-- Read Current Frame -->
+    <rect x="50" y="250" width="150" height="50" class="io"/>
+    <text x="125" y="285">Read Current Frame</text>
+
+    <!-- Preprocess Frame -->
+    <rect x="250" y="250" width="150" height="50" class="process"/>
+    <text x="325" y="285">Preprocess Frame</text>
+
+    <!-- Compute Frame Difference -->
+    <rect x="450" y="250" width="150" height="50" class="process"/>
+    <text x="525" y="285">Compute Frame Difference</text>
+
+    <!-- Thresholding -->
+    <rect x="250" y="350" width="150" height="50" class="process"/>
+    <text x="325" y="385">Thresholding</text>
+
+    <!-- Find Contours -->
+    <rect x="50" y="450" width="150" height="50" class="process"/>
+    <text x="125" y="485">Find Contours</text>
+
+    <!-- Display Results -->
+    <rect x="400" y="450" width="150" height="50" class="io"/>
+    <text x="475" y="485">Display Results</text>
+
+    <!-- End -->
+    <rect x="275" y="550" width="150" height="50" class="process"/>
+    <text x="325" y="585">End</text>
+
+    <!-- Arrows -->
+    <line x1="150" y1="75" x2="200" y2="75" class="arrow"/>
+    <line x1="350" y1="75" x2="400" y2="75" class="arrow"/>
+    <line x1="275" y1="200" x2="275" y2="250" class="arrow"/>
+    <line x1="125" y1="300" x2="200" y2="300" class="arrow"/>
+    <line x1="325" y1="300" x2="400" y2="300" class="arrow"/>
+    <line x1="525" y1="300" x2="550" y2="300" class="arrow"/>
+    <line x1="275" y1="400" x2="275" y2="450" class="arrow"/>
+    <line x1="125" y1="500" x2="200" y2="500" class="arrow"/>
+    <line x1="325" y1="500" x2="400" y2="500" class="arrow"/>
+    <line x1="475" y1="550" x2="525" y2="550" class="arrow"/>
+
+    <!-- Arrowhead Marker -->
+    <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto" markerUnits="strokeWidth">
+            <polygon points="0 0, 10 3.5, 0 7" fill="black"/>
+        </marker>
+    </defs>
+
+</svg>
