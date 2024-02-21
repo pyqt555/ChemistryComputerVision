@@ -26,8 +26,13 @@ num2 =0
 cameraNumber=0
 inputComplete=False
 killWindows=False
+submitted=False
 def RunTkinter():
     def submit_numbers():
+        global submitted
+        if submitted:
+            return
+        submitted=True
         global inputComplete
         global killWindows
         # Get the values entered by the user
@@ -102,7 +107,7 @@ def RunTkinter():
     display_checkbox = tk.Checkbutton(root, variable=display_var)
     display_checkbox.pack()
     # Create a button to submit the numbers
-    submit_button = tk.Button(root, text="Submit", command=submit_numbers)
+    submit_button = tk.Button(root, text="Start", command=submit_numbers)
     submit_button.pack()
     
 
@@ -162,6 +167,8 @@ threadtk=threading.Thread(target=RunTkinter)
 threadtk.start()
 while not inputComplete:
     time.sleep(.001)
+    if(threading.active_count()<2):
+            raise Exception("Ending Programm")
 bisze = 31
 bstd = 5
 cooldown=5
