@@ -7,8 +7,8 @@ bisze = 31
 bstd = 5
 cooldown=5
 cd_width=50
-total_objects_left = 0
-total_objects_right = 104
+total_objects_left = 10
+total_objects_right = 0
 def high_cont(mat):
     
     mat = mat.sum(-1) - 20
@@ -20,7 +20,7 @@ def high_cont(mat):
 def count_objects(mag,x_direction, middle_line, cds,draw_frame):
     global total_objects_left
     global total_objects_right
-    mag=mag*10
+    mag=mag*5
     #update cds
     cds=cds-1
     for i in range(len(cds)):
@@ -31,7 +31,7 @@ def count_objects(mag,x_direction, middle_line, cds,draw_frame):
     right=(x_direction>1)*255
     left=(x_direction<-1)*255
     # Apply thresholding to obtain binary image
-    _, thresh = cv2.threshold(cv2.GaussianBlur(mag,(5,5),3).astype(np.uint8), 5, 255, cv2.THRESH_BINARY)
+    _, thresh = cv2.threshold(cv2.GaussianBlur(mag,(21,21),10).astype(np.uint8), 5, 255, cv2.THRESH_BINARY)
 
     #cv2.imshow("thresh",thresh)
     # Find contours in the binary image
@@ -86,7 +86,7 @@ def count_objects(mag,x_direction, middle_line, cds,draw_frame):
     return len(objects), objects ,cds
 
 # Open video capture
-video_path = 'final_stuff\C0006_fixed.mp4'  # Replace with the path to your video file
+video_path = 'cv_vid_balls.mp4'  # Replace with the path to your video file
 cap = cv2.VideoCapture(video_path)
 
 # Check if the video file is successfully opened
@@ -111,7 +111,7 @@ if not ret:
 
 
 f1 = f1[:, 100:-100]
-f1 = cv2.rotate(f1, cv2.ROTATE_90_COUNTERCLOCKWISE)
+#f1 = cv2.rotate(f1, cv2.ROTATE_90_COUNTERCLOCKWISE)
 f1=cv2.convertScaleAbs( cv2.GaussianBlur(f1, (61, 61), 30), alpha=3, beta=-1)
 f1=cv2.cvtColor(f1, cv2.COLOR_BGR2GRAY)
 resize_dim = 500
@@ -158,11 +158,11 @@ try:
         # Check if the frame is successfully read
         
         frame = frame[:, 100:-100]
-        frame = cv2.rotate(frame, cv2.ROTATE_90_COUNTERCLOCKWISE)
-        cv2.imshow("f",frame)
+        #frame = cv2.rotate(frame, cv2.ROTATE_90_COUNTERCLOCKWISE)
+        #cv2.imshow("f",frame)
         drawF=frame.copy()
         drawF=cv2.resize(drawF, None, fx=scale, fy=scale)
-        frame=cv2.convertScaleAbs( cv2.GaussianBlur(frame, (61, 61), 30), alpha=3, beta=-1)
+        frame=cv2.convertScaleAbs( cv2.GaussianBlur(frame, (121, 121), 60), alpha=2, beta=-.5)
         cv2.imshow("f2",frame)
         # Count objects and update counts
         magnitude,x_dist,last_f=optical_flow(f1,frame)
@@ -171,7 +171,7 @@ try:
         #cv2.imshow("x",x_dist)
         cv2.imshow("magnitude",magnitude)
         #cv2.imshow("col",frame)
-        #cv2.imshow("a",drawF)
+        cv2.imshow("a",drawF)
         listLeft.append(total_objects_left)
         listRight.append(total_objects_right)
 
